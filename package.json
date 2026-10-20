@@ -1,5 +1,6 @@
 {
-  "devDependencies": {
-    "@types/node": "1.0.0"
-  }
+ "name": "hito git",
+ "version": "1.0.0",
+ "type": "module",
+ "dependencies": {}
 }
