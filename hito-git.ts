@@ -1,0 +1,57 @@
+import * as readline from 'readline/promises';
+import { stdin as input, stdout as output } from 'process';
+const rl = readline.createInterface({ input, output });
+const tareas: string[] = [];
+let salir = false;
+async function iniciarApp() {
+  while (!salir) {
+    console.log("\n=== MENU DE TAREAS ===");
+    console.log("1. Agregar tarea");
+    console.log("2. Eliminar ultima tarea");
+    console.log("3. Listar tareas");
+    console.log("4. Salir");
+    const opcion = (await rl.question("Elige una opcion: ")).trim();
+    switch (opcion) {
+      case "1": {
+        const titulo = (await rl.question("Titulo de la nueva tarea: ")).trim();
+        if (titulo === "") {
+          console.log("El titulo no puede estar vacio.");
+        } else {
+          tareas.push(titulo);
+          console.log("Tarea agregada correctamente.");
+        }
+        break;
+      }
+      case "2": {
+        if (tareas.length > 0) {
+          tareas.pop();
+          console.log("Ultima tarea eliminada.");
+        } else {
+          console.log("No hay tareas para eliminar.");
+        }
+        break;
+      }
+      case "3": {
+        if (tareas.length === 0) {
+          console.log("No hay tareas registradas.");
+        } else {
+          console.log("\n--- LISTA DE TAREAS ---");
+          tareas.forEach((tarea, index) => {
+            console.log(`${index + 1}. ${tarea}`);
+          });
+        }
+        break;
+      }
+      case "4": {
+        console.log("Saliendo del programa...");
+        salir = true;
+        break;
+      }
+      default: {
+        console.log("Opcion no valida.");
+      }
+    }
+  }
+  rl.close(); 
+}
+iniciarApp();
