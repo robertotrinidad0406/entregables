@@ -1,0 +1,16 @@
+import readline from 'readline/promises';
+import { stdin as input, stdout as output } from 'process';
+const rl = readline.createInterface({ input, output });
+let systemName: string = 'Index';
+let version: number = 545;
+let UserName: string = 'dedicatus';
+let idLicencia: number = version * 10;
+console.log("==================================================");
+console.log(`        ¡BIENVENIDO/A AL SISTEMA ${systemName.toUpperCase()}!`);
+console.log("==================================================");
+console.log(`Usuario: ${UserName}`);
+console.log(` Versión: ${version}`);
+console.log("--------------------------------------------------");
+console.log("==================================================");
+console.log(` Operación aritmética: ${version} * 10 = ${idLicencia}`);
+rl.close();
