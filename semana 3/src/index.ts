@@ -63,20 +63,20 @@ async function guardarEstudiantes(datos: Estudiante[]): Promise<void> {
 }
 
 app.get('/api/estudiantes', (_req: Request, res: Response) => {
-  // #swagger.tags = ['Estudiantes']
-  // #swagger.summary = 'Listar estudiantes'
-  // #swagger.description = 'Obtiene todos los estudiantes registrados.'
-  // #swagger.responses[200] = { description: 'Lista de estudiantes.' }
+  swagger.tags = ['Estudiantes']
+  swagger.summary = 'Listar estudiantes'
+  swagger.description = 'Obtiene todos los estudiantes registrados.'
+  swagger.responses[200] = { description: 'Lista de estudiantes.' }
   return res.status(200).json(estudiantes);
 });
 
 app.post('/api/estudiantes', async (req: Request, res: Response) => {
-  // #swagger.tags = ['Estudiantes']
-  // #swagger.summary = 'Crear estudiante'
-  // #swagger.description = 'Registra un estudiante nuevo. El email es obligatorio.'
-  // #swagger.parameters['body'] = { in: 'body', description: 'Datos del estudiante.', required: true, schema: { $ref: '#/definitions/NuevoEstudiante' } }
-  // #swagger.responses[201] = { description: 'Estudiante creado.' }
-  // #swagger.responses[400] = { description: 'El campo email es obligatorio.' }
+  swagger.tags = ['Estudiantes']
+  swagger.summary = 'Crear estudiante'
+  swagger.description = 'Registra un estudiante nuevo. El email es obligatorio.'
+  swagger.parameters['body'] = { in: 'body', description: 'Datos del estudiante.', required: true, schema: { $ref: '#/definitions/NuevoEstudiante' } }
+  swagger.responses[201] = { description: 'Estudiante creado.' }
+  swagger.responses[400] = { description: 'El campo email es obligatorio.' }
   const { nombre, email, bootcamp } = req.body;
   if (!email) {
     return res.status(400).json({
@@ -105,13 +105,13 @@ app.post('/api/estudiantes', async (req: Request, res: Response) => {
 });
 
 app.put('/api/estudiantes/:id', async (req: Request, res: Response) => {
-  // #swagger.tags = ['Estudiantes']
-  // #swagger.summary = 'Actualizar estudiante'
-  // #swagger.description = 'Actualiza los campos enviados de un estudiante existente.'
-  // #swagger.parameters['id'] = { in: 'path', description: 'ID del estudiante.', required: true, type: 'integer' }
-  // #swagger.parameters['body'] = { in: 'body', description: 'Campos del estudiante que se actualizarán.', required: true, schema: { $ref: '#/definitions/NuevoEstudiante' } }
-  // #swagger.responses[200] = { description: 'Estudiante actualizado.' }
-  // #swagger.responses[404] = { description: 'Estudiante no encontrado.' }
+  swagger.tags = ['Estudiantes']
+  swagger.summary = 'Actualizar estudiante'
+  swagger.description = 'Actualiza los campos enviados de un estudiante existente.'
+  swagger.parameters['id'] = { in: 'path', description: 'ID del estudiante.', required: true, type: 'integer' }
+  swagger.parameters['body'] = { in: 'body', description: 'Campos del estudiante que se actualizarán.', required: true, schema: { $ref: '#/definitions/NuevoEstudiante' } }
+  swagger.responses[200] = { description: 'Estudiante actualizado.' }
+  swagger.responses[404] = { description: 'Estudiante no encontrado.' }
   const id = Number(req.params.id);
   const estudiante = estudiantes.find((e) => e.id === id);
   if (!estudiante) {
@@ -179,3 +179,6 @@ iniciarServidor().catch((error: unknown) => {
   console.error('No se pudo iniciar el servidor:', error);
   process.exitCode = 1;
 });
+
+
+
