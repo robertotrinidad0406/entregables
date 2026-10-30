@@ -106,5 +106,8 @@ while (!exit) {
       console.log("Opcion invalida. Intenta de nuevo.");
   }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 162cff1039c10015dadd58c672444df61d762e79
 rl.close();

@@ -1,7 +1,9 @@
 # API de Inscripciones Académicas
 
 API REST de estudiantes construida con Express y TypeScript. Los datos se
-guardan en memoria y se reinician al detener el servidor.
+guardan en `database.json` para conservarlos después de reiniciar el servidor.
+La API acepta peticiones CORS para poder conectarse con interfaces en otros
+orígenes.
 
 ## Ejecutar la API
 
@@ -10,7 +12,9 @@ pnpm install
 pnpm dev
 ```
 
-La API queda disponible en `http://localhost:3000`.
+La API queda disponible en el puerto indicado por `PORT` en `.env`
+(por defecto, `http://localhost:3000`). No subas `.env` ni `database.json` al
+repositorio.
 
 ## Documentación Swagger
 
