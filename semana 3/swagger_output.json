@@ -1,0 +1,160 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API de Inscripciones Académicas",
+    "description": "Documentación de la API REST del MP-S2",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Estudiantes",
+      "description": "Operaciones para administrar estudiantes."
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/api/estudiantes": {
+      "get": {
+        "tags": [
+          "Estudiantes"
+        ],
+        "summary": "Listar estudiantes",
+        "description": "Obtiene todos los estudiantes registrados.",
+        "responses": {
+          "200": {
+            "description": "Lista de estudiantes."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Estudiantes"
+        ],
+        "summary": "Crear estudiante",
+        "description": "Registra un estudiante nuevo. El email es obligatorio.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Datos del estudiante.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NuevoEstudiante"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Estudiante creado."
+          },
+          "400": {
+            "description": "El campo email es obligatorio."
+          }
+        }
+      }
+    },
+    "/api/estudiantes/{id}": {
+      "put": {
+        "tags": [
+          "Estudiantes"
+        ],
+        "summary": "Actualizar estudiante",
+        "description": "Actualiza los campos enviados de un estudiante existente.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID del estudiante."
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Campos del estudiante que se actualizarán.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NuevoEstudiante"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Estudiante actualizado."
+          },
+          "404": {
+            "description": "Estudiante no encontrado."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Estudiantes"
+        ],
+        "summary": "Eliminar estudiante",
+        "description": "Elimina un estudiante existente por su ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID del estudiante."
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Estudiante eliminado."
+          },
+          "404": {
+            "description": "Estudiante no encontrado."
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Estudiante": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "nombre": {
+          "type": "string",
+          "example": "Ana"
+        },
+        "email": {
+          "type": "string",
+          "example": "ana@example.com"
+        },
+        "bootcamp": {
+          "type": "string",
+          "example": "Full Stack"
+        }
+      }
+    },
+    "NuevoEstudiante": {
+      "type": "object",
+      "properties": {
+        "nombre": {
+          "type": "string",
+          "example": "Ana"
+        },
+        "email": {
+          "type": "string",
+          "example": "ana@example.com"
+        },
+        "bootcamp": {
+          "type": "string",
+          "example": "Full Stack"
+        }
+      }
+    }
+  }
+}
